@@ -1,26 +1,7 @@
 
 
 .navbar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    /* height: 80px; */
-    width: 100%;
-    background-color: transparent;
-    z-index: 999;
-}
 
-.navbar.secondType{
-    background-color: white !important;
-}
-
-.navbar.secondType .bar{
-    background-color: #333;
-    
-}
-
-.navbar.active{
-    background-color: white !important;
 }
 
 
@@ -30,7 +11,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 5px 20px;
+        /* height: 50px; */
+        padding: 0 20px;
     }
 
     .navbar img{
@@ -47,9 +29,6 @@
     .bar{
         width: 30px;
         height: 3px;
-        background-color: white;
-    }
-    .navbar.active .bar{
-        background-color: #333 !important;
+        background-color: #333;
     }
 }
