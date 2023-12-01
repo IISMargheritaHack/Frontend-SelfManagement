@@ -1,12 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react'
 import './Navbar.css'
 
+import {useSelector} from 'react-redux'
+
 import logo from '../../images/logo_scuola_vettoriale.svg'
 
 const Navbar = ({type = "normal"}) => {
 
 
   const [isActive, setIsActive] = useState(false)
+  const [showLinks, setShowLinks] = useState(false)
+
+  const {user} = useSelector(state => state.currentUser)
 
 
   const changeBg = () => {
@@ -20,16 +25,23 @@ const Navbar = ({type = "normal"}) => {
   window.addEventListener("scroll", changeBg)
 
   return (
-    <div className={isActive ? `navbar active ${type !== "normal" && "secondType"}` : `navbar ${type !== "normal" && "secondType"}`}>
+    <div className={isActive || showLinks ? `navbar active ${type !== "normal" && "secondType"}` : `navbar ${type !== "normal" && "secondType"}`}>
       <a href="/autogestione" className="logo">
         <img src={logo} alt="" />
       </a>
 
-      {/* <div className="navbar__links"></div> */}
-      <div className="hamburger">
-        <div className="bar" />
-        <div className="bar" />
-        <div className="bar" />
+      <div className={showLinks ? "navbar__links show" : "navbar__links"}>
+        <a href="/">Home</a>
+        <a href="/">Contact</a>
+        <a href="/">About</a>
+        {(user?.isAdmin || user?.isOrganizzatore) && (
+          <a href="/manage">Corsi</a>
+        )}
+      </div>
+      <div className="hamburger" onClick={() => {setShowLinks(prev => !prev)}}>
+        <div className={showLinks ? "bar active" : "bar"} />
+        <div className={showLinks ? "bar active" : "bar"} />
+        <div className={showLinks ? "bar active" : "bar"} />
       </div>
     </div>
   )

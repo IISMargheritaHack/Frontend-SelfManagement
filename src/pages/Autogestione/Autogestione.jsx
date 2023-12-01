@@ -1,12 +1,10 @@
 import React from 'react'
 import './Autogestione.css'
 import Navbar from '../../components/Navbar/Navbar'
+import Footer from '../../components/Footer/Footer'
 
 //images
 import featuredImg from '../../images/foto autogestione/featured.webp'
-import fotografiaImg from '../../images/foto autogestione/macchina_fotografica-scaled.jpg'
-import pittoricaImg from '../../images/foto autogestione/pittorica.jpeg'
-import videoImg from '../../images/foto autogestione/video-making.webp'
 
 import { useSelector} from 'react-redux'
 
@@ -15,21 +13,6 @@ import { useEffect, useState } from 'react';
 
 
 const Autogestione = () => {
-
-    // const corsi = [
-    //     {
-    //         title: "Fotografia",
-    //         image: fotografiaImg
-    //     },
-    //     {
-    //         title: "Pittorica",
-    //         image: pittoricaImg
-    //     },
-    //     {
-    //         title: "Video-Making",
-    //         image: videoImg
-    //     }
-    // ]
 
     //controllo del token
     const user = useSelector(state => state.currentUser)
@@ -85,12 +68,18 @@ const Autogestione = () => {
             <div className="autogestione__items">
                 {corsi?.map(corso => (
                     <a href={`/corso/${corso._id}`} className="autogestione__items-element">
-                        <h2>{corso.name}</h2>
+                       <div className="autogestione__items-element_text">
+                            <h2>{corso.name}</h2>
+                            <p>{corso.desc}</p>
+                       </div>
+                       <div className="img-overlay" />
                         <img src={corso.img} alt="" />
                     </a>
                 ))}
             </div>
        </div>
+
+       <Footer />
     </div>
   )
 }
